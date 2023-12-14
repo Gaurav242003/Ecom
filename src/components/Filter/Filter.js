@@ -1,5 +1,5 @@
-import Product from '../components/Product/Product'
-import Pagination from '../components/Pagination/Pagination'
+import Product from '../Product/Product'
+import Pagination from '../Pagination/Pagination'
 import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
