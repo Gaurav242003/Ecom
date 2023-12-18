@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { useDispatch } from 'react-redux';
+
 
 
 export const fetchAllProduct = createAsyncThunk(
@@ -10,6 +10,32 @@ export const fetchAllProduct = createAsyncThunk(
         
         const response  = await axios.get(`http://localhost:8080/products`);
         
+        return response.data;
+    }
+)
+
+export const getFilterProduct = createAsyncThunk(
+    
+    'product/getFilterProduct',
+    async (filter) => {
+        
+        const st=`http://localhost:8080/products?${filter.type}=${filter.value}`
+        //console.log(st);
+        const response  = await axios.get(st);
+        //console.log(response.data)
+        return response.data;
+    }
+)
+
+export const getSortProduct = createAsyncThunk(
+    
+    'product/getSortProduct',
+    async (option) => {
+        
+        const st=`http://localhost:8080/products?_sort=${option.type}&_order=${option.order}`
+        //console.log(st);
+        const response  = await axios.get(st);
+        console.log(response.data)
         return response.data;
     }
 )
@@ -50,7 +76,26 @@ export const productSlice = createSlice({
             .addCase(fetchAllProduct.pending, (state, action) => {
            
             state.status = 'loading';
+            })
+            .addCase(getFilterProduct.fulfilled, (state, action) => {
+                
+                state.allProduct = action.payload;
+                state.status = 'idle';
+            })
+            .addCase(getFilterProduct.pending, (state, action) => {
+           
+            state.status = 'loading';
+            })
+            .addCase(getSortProduct.fulfilled, (state, action) => {
+                
+                state.allProduct = action.payload;
+                state.status = 'idle';
+            })
+            .addCase(getSortProduct.pending, (state, action) => {
+           
+            state.status = 'loading';
             });
+
     },
 })
 
