@@ -5,7 +5,7 @@ import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon,StarIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { useDispatch } from 'react-redux'
-import { getFilterProduct,getSortProduct } from '../../features/Product/ProductSlice'
+import { getFilterProduct,getSortProduct,setPageProduct } from '../../features/Product/ProductSlice'
 
 const sortOptions = [
 
@@ -48,20 +48,22 @@ function classNames(...classes) {
 export default function Filter() {
   const dispatch=useDispatch()
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const [filter,setFilter]=useState({});
+  //const [filter,setFilter]=useState({});
   const handleFilter=(e,section,option) =>{
-    
-     const newfilter={type: section.id,value:option.value}
-    
-     console.log(newfilter)
-     dispatch(getFilterProduct(newfilter));
+     let newfilter={};
+     if(e.target.checked)
+     {
+      newfilter={type: section.id,value:option.value}
+      dispatch(getFilterProduct(newfilter));
+     }else
+     dispatch(setPageProduct({pageNo:1,limit:9}))
   }
 
   const handleSort=(option)=>{
     // const sortSetting={type: option.type , order: option.order}
      //console.log(option);
-
      dispatch(getSortProduct(option));
+     
   }
 
 

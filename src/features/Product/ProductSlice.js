@@ -1,48 +1,102 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { useSelector } from 'react-redux';
 
 
 
 export const fetchAllProduct = createAsyncThunk(
-    
+
     'product/fetchAllProduct',
     async (userId, thunkAPI) => {
-        
-        const response  = await axios.get(`http://localhost:8080/products`);
-        
+
+        const response = await axios.get(`http://localhost:8080/products`);
+
         return response.data;
     }
 )
 
 export const getFilterProduct = createAsyncThunk(
-    
+
     'product/getFilterProduct',
     async (filter) => {
-        
-        const st=`http://localhost:8080/products?${filter.type}=${filter.value}`
+
+        const st = `http://localhost:8080/products?${filter.type}=${filter.value}`
         //console.log(st);
-        const response  = await axios.get(st);
+        const response = await axios.get(st);
         //console.log(response.data)
         return response.data;
     }
 )
 
 export const getSortProduct = createAsyncThunk(
-    
+
     'product/getSortProduct',
     async (option) => {
-        
-        const st=`http://localhost:8080/products?_sort=${option.type}&_order=${option.order}`
+
+        const st = `http://localhost:8080/products?_sort=${option.type}&_order=${option.order}`
         //console.log(st);
-        const response  = await axios.get(st);
+        const response = await axios.get(st);
         console.log(response.data)
         return response.data;
     }
 )
 
+export const setPageProduct = createAsyncThunk(
+
+    'product/setPageProduct',
+    async (page) => {
+
+        const st = `http://localhost:8080/products?_page=${page}&_limit=9`
+        //console.log(st);
+        const response = await axios.get(st);
+        const myHeader = response.headers;
+        const totalCount = myHeader.get("x-total-count")
+        const Alllinks={}
+       const links=myHeader.get("Link");
+       const pattern=/<([^>]+)>; rel="([^"]+)"/g;
+
+       let res = links.match(pattern); 
+       //console.log(res);
+    //    for(let rel in  links){
+    //     console.log(links[rel]);
+    //    }
+     const myLinks=[];
+     for(let i=0;i<res.length;i++){
+        let mystring='';
+        for(let k=1;k<res[i].length;k++){
+            if(res[i][k]=='>') break;
+            mystring+=res[i][k];
+            
+        }
+        myLinks.push(mystring);
+     }
+
+     //console.log(myLinks);
+        return { data: response.data, totalCount: totalCount, pageLink: myLinks }
+    }
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const initialState = {
     allProduct: [],
     status: '',
+    count: 0,
+    pageLink:[],
 }
 
 
@@ -69,38 +123,52 @@ export const productSlice = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder
             .addCase(fetchAllProduct.fulfilled, (state, action) => {
-                
+
                 state.allProduct = action.payload;
+                //console.log(state.allProduct);
                 state.status = 'idle';
             })
             .addCase(fetchAllProduct.pending, (state, action) => {
-           
-            state.status = 'loading';
+
+                state.status = 'loading';
             })
             .addCase(getFilterProduct.fulfilled, (state, action) => {
-                
+
                 state.allProduct = action.payload;
                 state.status = 'idle';
             })
             .addCase(getFilterProduct.pending, (state, action) => {
-           
-            state.status = 'loading';
+
+                state.status = 'loading';
             })
             .addCase(getSortProduct.fulfilled, (state, action) => {
-                
+
                 state.allProduct = action.payload;
                 state.status = 'idle';
             })
             .addCase(getSortProduct.pending, (state, action) => {
-           
-            state.status = 'loading';
+
+                state.status = 'loading';
+            })
+            .addCase(setPageProduct.fulfilled, (state, action) => {
+
+                state.allProduct = action.payload.data;
+                //console.log(state.allProduct);
+                state.count = action.payload.totalCount;
+                state.pageLink=action.payload.pageLink;
+                state.status = 'idle';
+            })
+            .addCase(setPageProduct.pending, (state, action) => {
+
+                state.status = 'loading';
             });
+            
 
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount }  = productSlice.actions
+export const { increment, decrement, incrementByAmount } = productSlice.actions
 
 
 
