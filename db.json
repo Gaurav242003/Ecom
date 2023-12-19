@@ -1840,6 +1840,66 @@
         "https://i.dummyjson.com/data/products/100/thumbnail.jpg"
       ]
     }
+  ],
+  "brands":[
+    {
+      "value": "Apple",
+      "label": "Apple",
+      "checked": false
+    },
+    {
+      "value": "Samsung",
+      "label": "Samsung",
+      "checked": false
+    },
+    {
+      "value": "HP Pavillion",
+      "label": "HP Pavillion",
+      "checked": false
+    },
+    {
+      "value": "Infinix",
+      "label": "Infinix",
+      "checked": false
+    },
+    {
+      "value": "Fair & Clear",
+      "label": "Fair & Clear",
+      "checked": false
+    },
+    {
+      "value": "Hemani Tea",
+      "label": "Hemani Tea",
+      "checked": false
+    }
+  ],
+  "categories":[
+    {
+      "value": "smartphones",
+      "label": "smartphones",
+      "checked": false
+    },
+    {
+      "value": "laptops",
+      "label": "laptops",
+      "checked": false
+    },
+    {
+      "value": "skincare",
+      "label": "skincare",
+      "checked": false
+    },
+    {
+      "value": "groceries",
+      "label": "groceries",
+      "checked": false
+    },
+    {
+      "value": "home-decoration",
+      "label": "home-decoration",
+      "checked": false
+    }
   ]
+
   
 }

@@ -17,7 +17,7 @@ export default function Pagination() {
 
 
   const total = useSelector(state => state.product.count);
-  console.log(total);
+  //console.log(total);
   const no_of_pages = Math.ceil(total / 9);
 
 
@@ -57,7 +57,7 @@ export default function Pagination() {
             {
 
               Array.from({ length: no_of_pages }).map((el, index) =>
-              (<div
+              (<div key={index}
                 onClick={e => setPage(index + 1)}
                 className={`relative inline-flex items-center cursor-pointer ${index + 1 === page ? ' bg-indigo-600 text-white ' : ''} px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300  focus:z-20 focus:outline-offset-0`}
               >

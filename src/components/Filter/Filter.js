@@ -1,11 +1,12 @@
 import Product from '../Product/Product'
 import Pagination from '../Pagination/Pagination'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon,StarIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
-import { useDispatch } from 'react-redux'
-import { getFilterProduct,getSortProduct,setPageProduct } from '../../features/Product/ProductSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getFilterProduct,getSortProduct,setPageProduct,getBrands,getCategories } from '../../features/Product/ProductSlice'
+
 
 const sortOptions = [
 
@@ -14,41 +15,23 @@ const sortOptions = [
   { name: 'Price: High to Low',order: 'desc',type: 'price',  current: false },
 ]
 
-const filters = [
-  {
-    id: 'brand',
-    name: 'Brand',
-    options: [
-      { value: 'Apple', label: 'Apple', checked: false },
-      { value: 'Samsung', label: 'Samsung', checked: false },
-      { value: 'HP Pavillion', label: 'HP Pavillion', checked: false },
-      { value: 'Infinix', label: 'Infinix', checked: false },
-      { value: 'Fair & Clear', label: 'Fair & Clear', checked: false },
-      { value: 'Hemani Tea', label: 'Hemani Tea', checked: false },
-    ],
-  },
-  {
-    id: 'category',
-    name: 'Category',
-    options: [
-      { value: 'smartphones', label: 'smartphones', checked: false },
-      { value: 'laptops', label: 'laptops', checked: false },
-      { value: 'skincare', label: 'skincare', checked: false },
-      { value: 'groceries', label: 'groceries', checked: false },
-      { value: 'home-decoration', label: 'home-decoration', checked: false },
-    ],
-  },
-  
-]
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Filter() {
+
+  
+
+
+
+
   const dispatch=useDispatch()
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   //const [filter,setFilter]=useState({});
+
   const handleFilter=(e,section,option) =>{
      let newfilter={};
      if(e.target.checked)
@@ -65,6 +48,28 @@ export default function Filter() {
      dispatch(getSortProduct(option));
      
   }
+
+  useEffect(()=>{
+     dispatch(getBrands());
+     dispatch(getCategories());
+  },[])
+ 
+  const brands=useSelector(state=>state.product.allBrand)
+  const categories=useSelector(state=>state.product.allCategory)
+ // console.log(brands);
+  const filters = [
+    {
+      id: 'brand',
+      name: 'Brand',
+      options: brands,
+    },
+    {
+      id: 'category',
+      name: 'Category',
+      options: categories,
+    },
+    
+  ]
 
 
   return (

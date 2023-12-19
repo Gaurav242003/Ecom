@@ -4,16 +4,7 @@ import { useSelector } from 'react-redux';
 
 
 
-export const fetchAllProduct = createAsyncThunk(
 
-    'product/fetchAllProduct',
-    async (userId, thunkAPI) => {
-
-        const response = await axios.get(`http://localhost:8080/products`);
-
-        return response.data;
-    }
-)
 
 export const getFilterProduct = createAsyncThunk(
 
@@ -51,28 +42,47 @@ export const setPageProduct = createAsyncThunk(
         const response = await axios.get(st);
         const myHeader = response.headers;
         const totalCount = myHeader.get("x-total-count")
-        const Alllinks={}
-       const links=myHeader.get("Link");
-       const pattern=/<([^>]+)>; rel="([^"]+)"/g;
+        
+        return { data: response.data, totalCount: totalCount }
+    }
+)
 
-       let res = links.match(pattern); 
-       //console.log(res);
-    //    for(let rel in  links){
-    //     console.log(links[rel]);
-    //    }
-     const myLinks=[];
-     for(let i=0;i<res.length;i++){
-        let mystring='';
-        for(let k=1;k<res[i].length;k++){
-            if(res[i][k]=='>') break;
-            mystring+=res[i][k];
-            
-        }
-        myLinks.push(mystring);
-     }
+export const getBrands = createAsyncThunk(
 
-     //console.log(myLinks);
-        return { data: response.data, totalCount: totalCount, pageLink: myLinks }
+    'product/getBrands',
+    async () => {
+
+        const st = `http://localhost:8080/brands`
+        //console.log(st);
+        const response = await axios.get(st);
+        //console.log(response.data)
+        return response.data;
+    }
+)
+
+export const getCategories = createAsyncThunk(
+
+    'product/getCategories',
+    async () => {
+
+        const st = `http://localhost:8080/categories`
+        //console.log(st);
+        const response = await axios.get(st);
+        //console.log(response.data)
+        return response.data;
+    }
+)
+
+export const getProductById = createAsyncThunk(
+
+    'product/getProductById',
+    async (id) => {
+
+        const st = `http://localhost:8080/products/${id}`
+        //console.log(st);
+        const response = await axios.get(st);
+        //console.log(response.data)
+        return response.data;
     }
 )
 
@@ -96,7 +106,9 @@ const initialState = {
     allProduct: [],
     status: '',
     count: 0,
-    pageLink:[],
+    allBrand:[],
+    allCategory:[],
+    currentProduct:null,
 }
 
 
@@ -122,16 +134,6 @@ export const productSlice = createSlice({
     extraReducers: (builder) => {
         // Add reducers for additional action types here, and handle loading state as needed
         builder
-            .addCase(fetchAllProduct.fulfilled, (state, action) => {
-
-                state.allProduct = action.payload;
-                //console.log(state.allProduct);
-                state.status = 'idle';
-            })
-            .addCase(fetchAllProduct.pending, (state, action) => {
-
-                state.status = 'loading';
-            })
             .addCase(getFilterProduct.fulfilled, (state, action) => {
 
                 state.allProduct = action.payload;
@@ -155,10 +157,37 @@ export const productSlice = createSlice({
                 state.allProduct = action.payload.data;
                 //console.log(state.allProduct);
                 state.count = action.payload.totalCount;
-                state.pageLink=action.payload.pageLink;
+                
                 state.status = 'idle';
             })
             .addCase(setPageProduct.pending, (state, action) => {
+
+                state.status = 'loading';
+            })
+            .addCase(getCategories.fulfilled, (state, action) => {
+
+                state.allCategory = action.payload;
+                state.status = 'idle';
+            })
+            .addCase(getCategories.pending, (state, action) => {
+
+                state.status = 'loading';
+            })
+            .addCase(getBrands.fulfilled, (state, action) => {
+
+                state.allBrand = action.payload;
+                state.status = 'idle';
+            })
+            .addCase(getBrands.pending, (state, action) => {
+
+                state.status = 'loading';
+            })
+            .addCase(getProductById.fulfilled, (state, action) => {
+
+                state.currentProduct = action.payload;
+                state.status = 'idle';
+            })
+            .addCase(getProductById.pending, (state, action) => {
 
                 state.status = 'loading';
             });

@@ -1,7 +1,10 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
+import { useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductById } from '../../features/Product/ProductSlice'
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -61,20 +64,28 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function ProductDetail() {
+export default function ProductDetail({id}) {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
-
+  const dispatch=useDispatch()
+   //console.log(id);
+   useEffect(()=>{
+        window.scrollTo({top:0})
+        
+        dispatch(getProductById(id))
+   },[dispatch,id])
+ const myProduct=useSelector(state=>state.product.currentProduct)
+ console.log(myProduct);
   return (
     <div className="bg-white">
-      <div className="pt-6">
+     {myProduct && <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             {product.breadcrumbs.map((breadcrumb) => (
               <li key={breadcrumb.id}>
                 <div className="flex items-center">
                   <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-900">
-                    {breadcrumb.name}
+                    {myProduct.category}
                   </a>
                   <svg
                     width={16}
@@ -91,7 +102,7 @@ export default function ProductDetail() {
             ))}
             <li className="text-sm">
               <a href={product.href} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
-                {product.name}
+                {myProduct.title}
               </a>
             </li>
           </ol>
@@ -101,7 +112,7 @@ export default function ProductDetail() {
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
             <img
-              src={product.images[0].src}
+              src={myProduct.images[0]}
               alt={product.images[0].alt}
               className="h-full w-full object-cover object-center"
             />
@@ -109,14 +120,14 @@ export default function ProductDetail() {
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[1].src}
+                src={myProduct.images[1]}
                 alt={product.images[1].alt}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[2].src}
+                src={myProduct.images[2]}
                 alt={product.images[2].alt}
                 className="h-full w-full object-cover object-center"
               />
@@ -124,7 +135,7 @@ export default function ProductDetail() {
           </div>
           <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
             <img
-              src={product.images[3].src}
+              src={myProduct.images[3]}
               alt={product.images[3].alt}
               className="h-full w-full object-cover object-center"
             />
@@ -134,13 +145,13 @@ export default function ProductDetail() {
         {/* Product info */}
         <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{myProduct.title}</h1>
           </div>
 
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
-            <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
+            <p className="text-3xl tracking-tight text-gray-900">${myProduct.price}</p>
 
             {/* Reviews */}
             <div className="mt-6">
@@ -151,7 +162,7 @@ export default function ProductDetail() {
                     <StarIcon
                       key={rating}
                       className={classNames(
-                        reviews.average > rating ? 'text-gray-900' : 'text-gray-200',
+                        myProduct.rating > rating ? 'text-gray-900' : 'text-gray-200',
                         'h-5 w-5 flex-shrink-0'
                       )}
                       aria-hidden="true"
@@ -159,9 +170,7 @@ export default function ProductDetail() {
                   ))}
                 </div>
                 <p className="sr-only">{reviews.average} out of 5 stars</p>
-                <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                  {reviews.totalCount} reviews
-                </a>
+                
               </div>
             </div>
 
@@ -279,7 +288,7 @@ export default function ProductDetail() {
               <h3 className="sr-only">Description</h3>
 
               <div className="space-y-6">
-                <p className="text-base text-gray-900">{product.description}</p>
+                <p className="text-base text-gray-900">{myProduct.description}</p>
               </div>
             </div>
 
@@ -306,7 +315,7 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   )
 }
