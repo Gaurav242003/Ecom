@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { fetchAllProduct,setPageProduct } from "../../features/Product/ProductSlice"
+import { fetchAllProduct,setPageProduct } from "../../features/ProductSlice"
 import { StarIcon } from '@heroicons/react/24/outline'
 
 

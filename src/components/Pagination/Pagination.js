@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { setPageProduct, setPageDirection } from '../../features/Product/ProductSlice';
+import { setPageProduct, setPageDirection } from '../../features/ProductSlice';
 import { Link } from 'react-router-dom';
 
 

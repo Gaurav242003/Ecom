@@ -4,7 +4,8 @@ import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductById } from '../../features/Product/ProductSlice'
+import { getProductById } from '../../features/ProductSlice'
+import { addToCart } from '../../features/cartSlice'
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -75,7 +76,13 @@ export default function ProductDetail({id}) {
         dispatch(getProductById(id))
    },[dispatch,id])
  const myProduct=useSelector(state=>state.product.currentProduct)
- console.log(myProduct);
+ //console.log(myProduct);
+  const handleClick=(e)=>{
+    // console.log('jeo')
+     e.preventDefault();
+     dispatch(addToCart({...myProduct,quantity:1,user:8}))
+  }
+
   return (
     <div className="bg-white">
      {myProduct && <div className="pt-6">
@@ -274,7 +281,8 @@ export default function ProductDetail({id}) {
               </div>
 
               <button
-                type="submit"
+               
+                onClick={e =>( handleClick(e))}
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Add to Cart
