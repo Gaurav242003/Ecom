@@ -3,6 +3,6 @@ import Cart from '../components/Cart/Cart'
 
 export const CartPage = () => {
   return (
-    <div><Cart/></div>
+    <div><Cart temp={true}/></div>
   )
 }

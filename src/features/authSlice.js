@@ -9,14 +9,33 @@ export const getSignUpUser = createAsyncThunk(
         const st = `http://localhost:8080/users`
         //console.log(st);
         const response = await axios.post(st,{
-           email:userData.email
+           email:userData.email,
+           password: userData.password
         },{
             headers:{
                 'Content-Type': 'application/json'
             }
         });
         //console.log(response.data)
-        return userData;
+        return response.data;
+    }
+)
+
+
+export const addUserAddress = createAsyncThunk(
+
+    'user/addUserAddress',
+    async (userDetail) => {
+        //console.log(userDetail)
+        const st = `http://localhost:8080/users/${userDetail.id}`
+        //console.log(st);
+        const response = await axios.patch(st,{address:userDetail.address},{
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        });
+        //console.log(response.data)
+        return userDetail.address;
     }
 )
 
@@ -24,6 +43,7 @@ export const getSignUpUser = createAsyncThunk(
 const initialState = {
     currentUser:null,
     status: 'idle',
+    address:[]
 }
 
 
@@ -56,8 +76,16 @@ export const userSlice = createSlice({
             .addCase(getSignUpUser.pending, (state, action) => {
 
                 state.status = 'loading';
+            })
+            .addCase(addUserAddress.fulfilled, (state, action) => {
+
+                state.address=action.payload
+                state.status = 'idle';
+            })
+            .addCase(addUserAddress.pending, (state, action) => {
+
+                state.status = 'loading';
             });
-           
             
 
     },

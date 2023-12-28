@@ -6,19 +6,21 @@ import Checkout from './Pages/CheckOutPage';
 import Protect from './components/Protect/Protect';
 import ProductDetailPage from './Pages/ProductDetailPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { getCartById } from './features/cartSlice';
+import { getCartByUserId } from './features/cartSlice';
+import Order from './components/Order/Order';
 
 import './App.css';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
-  var id=8
+  const user=useSelector(state=> state.user.currentUser)
+  const userid=user && user.id
   const dispatch=useDispatch()
 
   useEffect(()=>{
-        dispatch(getCartById(id))
-  },[dispatch,id])
+        dispatch(getCartByUserId(userid))
+  },[dispatch,userid])
   return (
     <div className="App">
      <BrowserRouter>
@@ -28,6 +30,7 @@ function App() {
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/cart' element={<CartPage/>}/>
           <Route path='/checkout' element={<Checkout/>}/>
+          <Route path='/order-success' element={<Order/>}/>
           <Route path='/product-detail/:id' element={<ProductDetailPage/>}/>
 
         </Routes>

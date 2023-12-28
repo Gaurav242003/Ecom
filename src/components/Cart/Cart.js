@@ -5,38 +5,16 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateCart ,deleteItem} from '../../features/cartSlice'
 
-const products = [
-  {
-    id: 1,
-    name: 'Throwback Hip Bag',
-    href: '#',
-    color: 'Salmon',
-    price: '$90.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-    imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
-  },
-  {
-    id: 2,
-    name: 'Medium Stuff Satchel',
-    href: '#',
-    color: 'Blue',
-    price: '$32.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-    imageAlt:
-      'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-  },
-  // More products...
-]
+
 
 export default function Cart() {
 
  
-  
+
   const dispatch=useDispatch()
   const handleChange=(e,product) =>{
     // console.log(e.target.value)
+    //console.log(product)
       dispatch(updateCart({...product,quantity:+e.target.value}))
       
    }
@@ -72,7 +50,7 @@ export default function Cart() {
                   <div>
                     <div className="flex justify-between text-base font-medium text-gray-900">
                       <h3>
-                        <Link to={`/product-detail/${product.id}`} className='cursor-pointer'>{product.title}</Link>
+                        <Link to={`/product-detail/${product.pid}`} className='cursor-pointer'>{product.title}</Link>
                       </h3>
                       <p className="ml-4">${product.price}</p>
                     </div>

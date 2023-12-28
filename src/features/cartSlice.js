@@ -14,12 +14,12 @@ export const addToCart = createAsyncThunk(
             }
         });
         //console.log(response.data)
-        return cartData;
+        return response.data;
     }
 )
 
 
-export const getCartById = createAsyncThunk(
+export const getCartByUserId = createAsyncThunk(
 
     'cart/getCartById',
     async (id) => {
@@ -99,12 +99,12 @@ export const cartSlice = createSlice({
 
                 state.status = 'loading';
             })
-            .addCase(getCartById.fulfilled, (state, action) => {
+            .addCase(getCartByUserId.fulfilled, (state, action) => {
 
                 state.items=action.payload;
                 state.status = 'idle';
             })
-            .addCase(getCartById.pending, (state, action) => {
+            .addCase(getCartByUserId.pending, (state, action) => {
 
                 state.status = 'loading';
             })

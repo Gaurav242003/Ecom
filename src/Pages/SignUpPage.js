@@ -17,13 +17,13 @@ export default function SignUp() {
   }
 
   const myuser=useSelector(state=> state.user.currentUser)
-  console.log(myuser);
+  //console.log(myuser);
   return (
     <> 
     
 
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-       {myuser && <Navigate  to='/signin'/>}
+       {myuser && <Navigate  to='/'/>}
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"

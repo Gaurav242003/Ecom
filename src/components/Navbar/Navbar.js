@@ -82,7 +82,7 @@ export default function Navbar({ children }) {
                         </button>
                       </Link>
 
-                      {items.length && <span className="inline-flex items-center rounded-full z-10 bg-red-50 mb-5 -ml-3 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10 ">
+                      {items.length>0 && <span className="inline-flex items-center rounded-full z-10 bg-red-50 mb-5 -ml-3 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10 ">
                         {items.length}
                       </span>}
 
@@ -177,7 +177,7 @@ export default function Navbar({ children }) {
 
                       </button>
                     </Link>
-                    {items.length && <span className="inline-flex items-center rounded-full z-10 bg-red-50 mb-5 -ml-3 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10 ">
+                    {items.length>0 && <span className="inline-flex items-center rounded-full z-10 bg-red-50 mb-5 -ml-3 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10 ">
                       {items.length}
                     </span>}
                   </div>

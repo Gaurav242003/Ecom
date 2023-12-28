@@ -77,10 +77,14 @@ export default function ProductDetail({id}) {
    },[dispatch,id])
  const myProduct=useSelector(state=>state.product.currentProduct)
  //console.log(myProduct);
+ const user=useSelector(state=>state.user.currentUser)
   const handleClick=(e)=>{
     // console.log('jeo')
      e.preventDefault();
-     dispatch(addToCart({...myProduct,quantity:1,user:8}))
+     const temp={...myProduct,quantity:1,user:user.id};
+     const pid=myProduct.id;
+     delete temp.id;
+     dispatch(addToCart({...temp,pid:pid}))
   }
 
   return (
