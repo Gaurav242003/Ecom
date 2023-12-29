@@ -63,6 +63,22 @@ export const deleteItem = createAsyncThunk(
 )
 
 
+
+export const resetCartOfUser=createAsyncThunk(
+    'cart/resetCartOfUser',
+    async(id)=>{
+        const response= await axios.get(`http://localhost:8080/cart?user=${id}`)
+        const items=response.data
+       // console.log(items)
+        for(let item of items){
+            await axios.delete(`http://localhost:8080/cart/${item.id}`)
+        }
+
+        return {status:'success'}
+    }
+)
+
+
 const initialState = {
     items:[],
     status: 'idle',
@@ -125,6 +141,14 @@ export const cartSlice = createSlice({
                 state.status = 'idle';
             })
             .addCase(deleteItem.pending, (state, action) => {
+
+                state.status = 'loading';
+            })
+            .addCase(resetCartOfUser.fulfilled, (state, action) => {
+                state.items=[]
+                state.status='idle'
+            })
+            .addCase(resetCartOfUser.pending, (state, action) => {
 
                 state.status = 'loading';
             });

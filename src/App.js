@@ -7,7 +7,9 @@ import Protect from './components/Protect/Protect';
 import ProductDetailPage from './Pages/ProductDetailPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getCartByUserId } from './features/cartSlice';
-import Order from './components/Order/Order';
+import OrderSuccess from './components/Order/OrderSuccess';
+
+import MyOrderPage from './Pages/MyOrderPage';
 
 import './App.css';
 import { useEffect } from 'react';
@@ -30,7 +32,8 @@ function App() {
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/cart' element={<CartPage/>}/>
           <Route path='/checkout' element={<Checkout/>}/>
-          <Route path='/order-success' element={<Order/>}/>
+          <Route path='/myorders' element={<MyOrderPage/>}/>
+          <Route path='/order-success/:id' element={<OrderSuccess/>}/>
           <Route path='/product-detail/:id' element={<ProductDetailPage/>}/>
 
         </Routes>

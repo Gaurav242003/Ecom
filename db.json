@@ -1901,95 +1901,131 @@
   ],
   "users": [
     {
-      "email": "heleo@gmail.com",
-      "password": "123456789As",
+      "email": "123@gmail.com",
+      "password": "123456As",
       "id": 1,
       "address": [
         {
-          "fullName": "apk yadav",
+          "fullName": "kja",
           "mobileNo": "1234567890",
-          "email": "hello@gmail.com",
-          "streetAddress": "gali no 4",
-          "city": "faridabad",
-          "state": "haryana",
+          "email": "ka@gmail.com",
+          "streetAddress": "akj",
+          "city": "kjkaj",
+          "state": "jakj",
           "pinCode": "121003"
         },
         {
-          "fullName": "gaurav yadav",
-          "mobileNo": "1234568706",
-          "email": "kdfj@gmail.com",
-          "streetAddress": "glaj",
-          "city": "djfk",
-          "state": "jkgaj",
-          "pinCode": "7945"
+          "fullName": "fakj",
+          "mobileNo": "7894561230",
+          "email": "akj@gmail.com",
+          "streetAddress": "ksjd",
+          "city": "kjdakj",
+          "state": "kj",
+          "pinCode": "kj"
         }
       ]
     }
   ],
-  "cart": [
-    {
-      "title": "ank Tops for Womens/Girls",
-      "description": "PACK OF 3 CAMISOLES ,VERY COMFORTABLE SOFT COTTON STUFF, COMFORTABLE IN ALL FOUR SEASONS",
-      "price": 50,
-      "discountPercentage": 12.05,
-      "rating": 4.52,
-      "stock": 107,
-      "brand": "Soft Cotton",
-      "category": "tops",
-      "thumbnail": "https://i.dummyjson.com/data/products/37/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/37/1.jpg",
-        "https://i.dummyjson.com/data/products/37/2.jpg",
-        "https://i.dummyjson.com/data/products/37/3.jpg",
-        "https://i.dummyjson.com/data/products/37/4.jpg",
-        "https://i.dummyjson.com/data/products/37/thumbnail.jpg"
-      ],
-      "quantity": 2,
-      "user": 1,
-      "pid": 37,
-      "id": 1
-    }
-  ],
+  "cart": [],
   "orders": [
     {
       "cart": [
         {
-          "title": "ank Tops for Womens/Girls",
-          "description": "PACK OF 3 CAMISOLES ,VERY COMFORTABLE SOFT COTTON STUFF, COMFORTABLE IN ALL FOUR SEASONS",
-          "price": 50,
-          "discountPercentage": 12.05,
-          "rating": 4.52,
-          "stock": 107,
-          "brand": "Soft Cotton",
-          "category": "tops",
-          "thumbnail": "https://i.dummyjson.com/data/products/37/thumbnail.jpg",
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
           "images": [
-            "https://i.dummyjson.com/data/products/37/1.jpg",
-            "https://i.dummyjson.com/data/products/37/2.jpg",
-            "https://i.dummyjson.com/data/products/37/3.jpg",
-            "https://i.dummyjson.com/data/products/37/4.jpg",
-            "https://i.dummyjson.com/data/products/37/thumbnail.jpg"
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "pid": 2,
+          "id": 1
+        },
+        {
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/3/1.jpg"
+          ],
+          "quantity": 3,
+          "user": 1,
+          "pid": 3,
+          "id": 2
+        }
+      ],
+      "totalPrice": 4646,
+      "totalItem": 4,
+      "userID": 1,
+      "deliveryAddress": {
+        "fullName": "kja",
+        "mobileNo": "1234567890",
+        "email": "ka@gmail.com",
+        "streetAddress": "akj",
+        "city": "kjkaj",
+        "state": "jakj",
+        "pinCode": "121003"
+      },
+      "paymentMehod": "cod",
+      "status": "pending",
+      "id": 1
+    },
+    {
+      "cart": [
+        {
+          "title": "women's shoes",
+          "description": "Close: Lace, Style with bottom: Increased inside, Sole Material: Rubber",
+          "price": 40,
+          "discountPercentage": 16.96,
+          "rating": 4.14,
+          "stock": 72,
+          "brand": "IELGY fashion",
+          "category": "womens-shoes",
+          "thumbnail": "https://i.dummyjson.com/data/products/46/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/46/1.webp",
+            "https://i.dummyjson.com/data/products/46/2.jpg",
+            "https://i.dummyjson.com/data/products/46/3.jpg",
+            "https://i.dummyjson.com/data/products/46/4.jpg",
+            "https://i.dummyjson.com/data/products/46/thumbnail.jpg"
           ],
           "quantity": 2,
           "user": 1,
-          "pid": 37,
+          "pid": 46,
           "id": 1
         }
       ],
-      "totalPrice": 100,
+      "totalPrice": 80,
       "totalItem": 2,
       "userID": 1,
       "deliveryAddress": {
-        "fullName": "gaurav yadav",
-        "mobileNo": "1234568706",
-        "email": "kdfj@gmail.com",
-        "streetAddress": "glaj",
-        "city": "djfk",
-        "state": "jkgaj",
-        "pinCode": "7945"
+        "fullName": "fakj",
+        "mobileNo": "7894561230",
+        "email": "akj@gmail.com",
+        "streetAddress": "ksjd",
+        "city": "kjdakj",
+        "state": "kj",
+        "pinCode": "kj"
       },
       "paymentMehod": "cod",
-      "id": 1
+      "status": "pending",
+      "id": 2
     }
   ]
 }

@@ -39,11 +39,21 @@ export const addUserAddress = createAsyncThunk(
     }
 )
 
+export const getMyOrders=createAsyncThunk(
+    'user/getMyOrders',
+    async(id)=>{
+        const response=await axios.get(`http://localhost:8080/orders/?userID=${id}`)
+        console.log(response.data)
+        return response.data;
+    }
+)
+
 
 const initialState = {
     currentUser:null,
     status: 'idle',
-    address:[]
+    address:[],
+    MyOrder:[],
 }
 
 
@@ -85,7 +95,17 @@ export const userSlice = createSlice({
             .addCase(addUserAddress.pending, (state, action) => {
 
                 state.status = 'loading';
+            })
+            .addCase(getMyOrders.fulfilled, (state, action) => {
+
+                state.MyOrder=action.payload
+                state.status = 'idle';
+            })
+            .addCase(getMyOrders.pending, (state, action) => {
+
+                state.status = 'loading';
             });
+            
             
 
     },

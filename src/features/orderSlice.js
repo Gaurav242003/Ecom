@@ -14,7 +14,8 @@ export const addToOrder = createAsyncThunk(
             totalItem:totalItem,
             userID: user.id,
             deliveryAddress:address,
-            paymentMehod:payment
+            paymentMehod:payment,
+            status:"pending"
         }, {
             headers: {
                 'Content-Type': 'application/json'
@@ -33,6 +34,7 @@ export const addToOrder = createAsyncThunk(
 
 const initialState = {
     allOrders: [],
+    currentOrder:null,
     status: 'idle',
 }
 
@@ -41,19 +43,10 @@ export const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
-        increment: (state) => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes
-            state.value += 1
+        resetcurrentOrder: (state) => {
+          state.currentOrder=null
         },
-        decrement: (state) => {
-            state.value -= 1
-        },
-        incrementByAmount: (state, action) => {
-            state.value += action.payload
-        },
+      
     },
     extraReducers: (builder) => {
         // Add reducers for additional action types here, and handle loading state as needed
@@ -61,6 +54,7 @@ export const orderSlice = createSlice({
             .addCase(addToOrder.fulfilled, (state, action) => {
 
                 state.allOrders.push(action.payload);
+                state.currentOrder=action.payload;
                 state.status = 'idle';
             })
             .addCase(addToOrder.pending, (state, action) => {
@@ -74,7 +68,7 @@ export const orderSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = orderSlice.actions
+export const {resetcurrentOrder} = orderSlice.actions
 
 
 
