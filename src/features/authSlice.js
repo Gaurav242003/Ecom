@@ -8,11 +8,13 @@ export const getSignUpUser = createAsyncThunk(
 
         const st = `http://localhost:8080/users`
         //console.log(st);
-        const response = await axios.post(st,{
-           email:userData.email,
-           password: userData.password
-        },{
-            headers:{
+        const response = await axios.post(st, {
+            email: userData.email,
+            password: userData.password,
+            username: userData.username,
+            phoneNo: userData.phoneNo,
+        }, {
+            headers: {
                 'Content-Type': 'application/json'
             }
         });
@@ -29,8 +31,8 @@ export const addUserAddress = createAsyncThunk(
         //console.log(userDetail)
         const st = `http://localhost:8080/users/${userDetail.id}`
         //console.log(st);
-        const response = await axios.patch(st,{address:userDetail.address},{
-            headers:{
+        const response = await axios.patch(st, { address: userDetail.address }, {
+            headers: {
                 'Content-Type': 'application/json'
             }
         });
@@ -39,21 +41,34 @@ export const addUserAddress = createAsyncThunk(
     }
 )
 
-export const getMyOrders=createAsyncThunk(
+export const getMyOrders = createAsyncThunk(
     'user/getMyOrders',
-    async(id)=>{
-        const response=await axios.get(`http://localhost:8080/orders/?userID=${id}`)
-        console.log(response.data)
+    async (id) => {
+        const response = await axios.get(`http://localhost:8080/orders/?userID=${id}`)
+        //console.log(response.data)
         return response.data;
+    }
+)
+
+export const deleteUserAddress = createAsyncThunk(
+    'user/deleteUserAddress',
+    async (user) => {
+        const response = await axios.put(`http://localhost:8080/users/${user.id}`, user, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        // console.log(response.data)
+        return response.data
     }
 )
 
 
 const initialState = {
-    currentUser:null,
+    currentUser: null,
     status: 'idle',
-    address:[],
-    MyOrder:[],
+    address: [],
+    MyOrder: [],
 }
 
 
@@ -61,18 +76,25 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        increment: (state) => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes
-            state.value += 1
-        },
-        decrement: (state) => {
-            state.value -= 1
-        },
-        incrementByAmount: (state, action) => {
-            state.value += action.payload
+        loggedIn: (state) => {
+            state.currentUser = {
+                email: "royalgk2@gmail.com",
+                password: "123456As",
+                username: "Gaurav Kumar",
+                phoneNo: "7023893793",
+                "id": 1,
+            }
+            state.address=[
+                {
+                  fullName: "kajk",
+                  mobileNo: "1234567890",
+                  email: "kaj@gmail.com",
+                  streetAddress: "kajka",
+                  city: "kjakj",
+                  state: "kjakl",
+                  pinCode: "126"
+                }
+              ]
         },
     },
     extraReducers: (builder) => {
@@ -89,7 +111,7 @@ export const userSlice = createSlice({
             })
             .addCase(addUserAddress.fulfilled, (state, action) => {
 
-                state.address=action.payload
+                state.address = action.payload
                 state.status = 'idle';
             })
             .addCase(addUserAddress.pending, (state, action) => {
@@ -98,21 +120,30 @@ export const userSlice = createSlice({
             })
             .addCase(getMyOrders.fulfilled, (state, action) => {
 
-                state.MyOrder=action.payload
+                state.MyOrder = action.payload
                 state.status = 'idle';
             })
             .addCase(getMyOrders.pending, (state, action) => {
 
                 state.status = 'loading';
+            })
+            .addCase(deleteUserAddress.fulfilled, (state, action) => {
+
+                state.address = action.payload.address
+                state.status = 'idle';
+            })
+            .addCase(deleteUserAddress.pending, (state, action) => {
+
+                state.status = 'loading';
             });
-            
-            
+
+
 
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = userSlice.actions
+export const { loggedIn } = userSlice.actions
 
 
 

@@ -8,7 +8,9 @@ import ProductDetailPage from './Pages/ProductDetailPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getCartByUserId } from './features/cartSlice';
 import OrderSuccess from './components/Order/OrderSuccess';
+import Page404 from './Pages/Page404';
 
+import ProfilePage from './Pages/ProfilePage';
 import MyOrderPage from './Pages/MyOrderPage';
 
 import './App.css';
@@ -27,14 +29,16 @@ function App() {
     <div className="App">
      <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route path='/' element={<Protect> <Home/> </Protect>}/>
           <Route path='/signin' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/cart' element={<CartPage/>}/>
-          <Route path='/checkout' element={<Checkout/>}/>
-          <Route path='/myorders' element={<MyOrderPage/>}/>
-          <Route path='/order-success/:id' element={<OrderSuccess/>}/>
-          <Route path='/product-detail/:id' element={<ProductDetailPage/>}/>
+          <Route path='/cart' element={<Protect><CartPage/></Protect>}/>
+          <Route path='/checkout' element={<Protect><Checkout/></Protect>}/>
+          <Route path='/myorders' element={<Protect><MyOrderPage/></Protect>}/>
+          <Route path='/myprofile' element={<Protect><ProfilePage/></Protect>}/>
+          <Route path='/order-success/:id' element={<Protect><OrderSuccess/></Protect>}/>
+          <Route path='/product-detail/:id' element={<Protect><ProductDetailPage/></Protect>}/>
+          <Route path='*' element={<Page404/>}/>
 
         </Routes>
      </BrowserRouter>

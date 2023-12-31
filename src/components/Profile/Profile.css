@@ -1,0 +1,72 @@
+
+.box{
+    top:0%;
+    left:0%;
+   
+   
+}
+.myimg{
+    border: 2px solid black;
+    border-radius: 50%;
+    max-height: 150px;
+   
+}
+
+.pro{
+    min-height: 40%;
+    width: 50%;
+}
+
+.camera{
+    top:81%;
+    left: 78%;
+    height: 15%;
+    width: 15%;
+    border-radius: 100%;
+    border: 1px solid black;
+    
+}
+
+.myform{
+    top:0%;
+    left:0%;
+    background-color: rgba(255, 255, 255, 0.707);
+    
+    overflow-y: auto;
+}
+.cross{
+    top: 0%;
+    right: 0%;
+    
+}
+.pform{
+    width: 70%;
+    min-height: 100px;
+    background-color: white;
+    padding-top: 50px;
+}
+
+@media (max-width: 1024px) {
+    .pro{
+        width: 100%;
+    }
+    .pform{
+        width: 100%;
+    }
+    .myform{
+        top:0%;
+        left:0%;
+        
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 378px) {
+  
+    .pform{
+        width: 100%;
+        padding-top: 300px;
+    }
+}
+
+

@@ -1901,27 +1901,29 @@
   ],
   "users": [
     {
-      "email": "123@gmail.com",
-      "password": "123456As",
+      "email": "ks@gmail.com",
+      "password": "123456789As",
+      "username": "Noop Yadav",
+      "phoneNo": "7894561230",
       "id": 1,
       "address": [
         {
-          "fullName": "kja",
-          "mobileNo": "1234567890",
-          "email": "ka@gmail.com",
-          "streetAddress": "akj",
-          "city": "kjkaj",
-          "state": "jakj",
-          "pinCode": "121003"
+          "fullName": "Gaurav  yadav",
+          "mobileNo": "4567891230",
+          "email": "FK@gmail.com",
+          "streetAddress": "kaj",
+          "city": "kjafk",
+          "state": "kjfak",
+          "pinCode": "789"
         },
         {
-          "fullName": "fakj",
+          "fullName": "Anupam Yadav",
           "mobileNo": "7894561230",
-          "email": "akj@gmail.com",
-          "streetAddress": "ksjd",
-          "city": "kjdakj",
-          "state": "kj",
-          "pinCode": "kj"
+          "email": "kajk@gmail.com",
+          "streetAddress": "kaj",
+          "city": "kjafk",
+          "state": "kkaj",
+          "pinCode": "123456"
         }
       ]
     }
@@ -1931,101 +1933,43 @@
     {
       "cart": [
         {
-          "title": "iPhone X",
-          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-          "price": 899,
-          "discountPercentage": 17.94,
-          "rating": 4.44,
-          "stock": 34,
-          "brand": "Apple",
+          "title": "OPPOF19",
+          "description": "OPPO F19 is officially announced on April 2021.",
+          "price": 280,
+          "discountPercentage": 17.91,
+          "rating": 4.3,
+          "stock": 123,
+          "brand": "OPPO",
           "category": "smartphones",
-          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
           "images": [
-            "https://i.dummyjson.com/data/products/2/1.jpg",
-            "https://i.dummyjson.com/data/products/2/2.jpg",
-            "https://i.dummyjson.com/data/products/2/3.jpg",
-            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+            "https://i.dummyjson.com/data/products/4/1.jpg",
+            "https://i.dummyjson.com/data/products/4/2.jpg",
+            "https://i.dummyjson.com/data/products/4/3.jpg",
+            "https://i.dummyjson.com/data/products/4/4.jpg",
+            "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
           ],
           "quantity": 1,
           "user": 1,
-          "pid": 2,
+          "pid": 4,
           "id": 1
-        },
-        {
-          "title": "Samsung Universe 9",
-          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
-          "price": 1249,
-          "discountPercentage": 15.46,
-          "rating": 4.09,
-          "stock": 36,
-          "brand": "Samsung",
-          "category": "smartphones",
-          "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
-          "images": [
-            "https://i.dummyjson.com/data/products/3/1.jpg"
-          ],
-          "quantity": 3,
-          "user": 1,
-          "pid": 3,
-          "id": 2
         }
       ],
-      "totalPrice": 4646,
-      "totalItem": 4,
+      "totalPrice": 280,
+      "totalItem": 1,
       "userID": 1,
       "deliveryAddress": {
-        "fullName": "kja",
-        "mobileNo": "1234567890",
-        "email": "ka@gmail.com",
-        "streetAddress": "akj",
-        "city": "kjkaj",
-        "state": "jakj",
-        "pinCode": "121003"
+        "fullName": "Anupam Yadav",
+        "mobileNo": "7894561230",
+        "email": "kajk@gmail.com",
+        "streetAddress": "kaj",
+        "city": "kjafk",
+        "state": "kkaj",
+        "pinCode": "123456"
       },
       "paymentMehod": "cod",
       "status": "pending",
       "id": 1
-    },
-    {
-      "cart": [
-        {
-          "title": "women's shoes",
-          "description": "Close: Lace, Style with bottom: Increased inside, Sole Material: Rubber",
-          "price": 40,
-          "discountPercentage": 16.96,
-          "rating": 4.14,
-          "stock": 72,
-          "brand": "IELGY fashion",
-          "category": "womens-shoes",
-          "thumbnail": "https://i.dummyjson.com/data/products/46/thumbnail.jpg",
-          "images": [
-            "https://i.dummyjson.com/data/products/46/1.webp",
-            "https://i.dummyjson.com/data/products/46/2.jpg",
-            "https://i.dummyjson.com/data/products/46/3.jpg",
-            "https://i.dummyjson.com/data/products/46/4.jpg",
-            "https://i.dummyjson.com/data/products/46/thumbnail.jpg"
-          ],
-          "quantity": 2,
-          "user": 1,
-          "pid": 46,
-          "id": 1
-        }
-      ],
-      "totalPrice": 80,
-      "totalItem": 2,
-      "userID": 1,
-      "deliveryAddress": {
-        "fullName": "fakj",
-        "mobileNo": "7894561230",
-        "email": "akj@gmail.com",
-        "streetAddress": "ksjd",
-        "city": "kjdakj",
-        "state": "kj",
-        "pinCode": "kj"
-      },
-      "paymentMehod": "cod",
-      "status": "pending",
-      "id": 2
     }
   ]
 }
